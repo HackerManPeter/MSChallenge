@@ -2,23 +2,23 @@ import { IsNumber, IsString } from 'class-validator';
 
 export class CreateBookDto {
   @IsString()
-  title: string;
+  book_title: string;
 
   @IsString()
-  edition: string;
+  book_edition: string;
 
   @IsString()
-  author: string;
+  book_author: string;
 
   @IsString()
-  publisher: string;
+  book_publisher: string;
 
   @IsNumber()
-  copies: number;
+  book_copies: number;
 
   @IsNumber()
-  cost: number;
+  book_cost: number;
 
   @IsString()
-  remarks: string;
+  book_remarks: string;
 }

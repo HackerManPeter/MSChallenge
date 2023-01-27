@@ -3,26 +3,29 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Book {
   @PrimaryGeneratedColumn()
-  id: number;
+  book_ID: number;
 
   @Column()
-  title: string;
+  book_title: string;
 
   @Column()
-  edition: string;
+  book_edition: string;
 
   @Column()
-  author: string;
+  book_author: string;
 
   @Column()
-  publisher: string;
+  book_publisher: string;
 
   @Column()
-  copies: number;
+  book_copies: number;
 
   @Column()
-  cost: number;
+  book_cost: number;
 
-  @Column()
-  remarks: string;
+  @Column({
+    nullable: true,
+    length: 350,
+  })
+  book_remarks: string;
 }
