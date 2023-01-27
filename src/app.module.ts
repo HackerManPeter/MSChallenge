@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { Staff } from './staff/entities/staff.entity';
+import { BooksModule } from './books/books.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { Staff } from './staff/entities/staff.entity';
       synchronize: true,
       autoLoadEntities: true,
     }),
+    BooksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
