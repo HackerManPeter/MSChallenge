@@ -30,6 +30,11 @@ export class BooksController {
     return this.booksService.findByPublisher();
   }
 
+  @Get('by-author')
+  findByAuthor() {
+    return this.booksService.findByAuthor();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.booksService.findOne(+id);

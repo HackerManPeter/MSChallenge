@@ -29,7 +29,11 @@ export class BooksService {
   }
 
   async findByPublisher() {
-    return this.bookRepository.find({ order: { book_publisher: 'DESC' } });
+    return this.bookRepository.find({ order: { book_publisher: 'ASC' } });
+  }
+
+  async findByAuthor() {
+    return this.bookRepository.find({ order: { book_author: 'ASC' } });
   }
 
   async findOne(id: number): Promise<Book> {
