@@ -3,29 +3,29 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 export class UpdateBookDto {
   @IsString()
   @IsOptional()
-  title: string;
+  book_title: string;
 
   @IsString()
   @IsOptional()
-  edition: string;
+  book_edition: string;
 
   @IsString()
   @IsOptional()
-  author: string;
+  book_author: string;
 
   @IsString()
   @IsOptional()
-  publisher: string;
+  book_publisher: string;
 
   @IsNumber()
   @IsOptional()
-  copies: number;
+  book_copies: number;
 
   @IsNumber()
   @IsOptional()
-  cost: number;
+  book_cost: number;
 
   @IsString()
   @IsOptional()
-  remarks: string;
+  book_remarks: string;
 }

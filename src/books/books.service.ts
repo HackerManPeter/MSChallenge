@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateBookDto } from './dto/create-book.dto';
@@ -11,23 +15,68 @@ export class BooksService {
     @InjectRepository(Book)
     private readonly bookRepository: Repository<Book>,
   ) {}
-  create(createBookDto: CreateBookDto) {
-    return this.bookRepository.create(createBookDto);
+
+  async create(createBookDto: CreateBookDto): Promise<CreateBookDto> {
+    try {
+      return this.bookRepository.save(createBookDto);
+    } catch (error) {
+      throw new BadRequestException();
+    }
   }
 
-  findAll() {
+  findAll(): Promise<Book[]> {
     return this.bookRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} book`;
+  async findByPublisher() {
+    return this.bookRepository.find({ order: { book_publisher: 'DESC' } });
   }
 
-  update(id: number, updateBookDto: UpdateBookDto) {
-    return `This action updates a #${id} book`;
+  async findOne(id: number): Promise<Book> {
+    try {
+      const book = await this.bookRepository.findOneBy({ book_ID: id });
+
+      if (!book) {
+        throw new NotFoundException();
+      }
+      return book;
+    } catch (error) {
+      return error;
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} book`;
+  async update(id: number, updateBookDto: UpdateBookDto): Promise<Book> {
+    try {
+      const book = await this.bookRepository.findOneBy({ book_ID: id });
+
+      if (!book) {
+        throw new NotFoundException();
+      }
+
+      const updatedBook = await this.bookRepository.update(id, updateBookDto);
+
+      if (!updatedBook) {
+        throw new BadRequestException();
+      }
+
+      return this.bookRepository.findOneBy({ book_ID: id });
+    } catch (error) {
+      console.log('err');
+      return error;
+    }
+  }
+
+  async remove(id: number): Promise<Book> {
+    try {
+      const book = await this.bookRepository.findOneBy({ book_ID: id });
+
+      if (!book) {
+        throw new NotFoundException();
+      }
+
+      return this.bookRepository.remove(book);
+    } catch (error) {
+      return error;
+    }
   }
 }
