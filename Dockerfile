@@ -17,8 +17,6 @@ USER node
 
 COPY --chown=node:node package*.json pnpm-lock.yaml ./
 
-RUN pnpm install --frozen-lockfile --prod
-
 
 ###################
 # FOR BUILD STAGE
@@ -26,12 +24,11 @@ RUN pnpm install --frozen-lockfile --prod
 
 FROM base as build
 
+RUN pnpm install --frozen-lockfile
+
 COPY --chown=node:node . ./
 
 RUN pnpm build
-
-COPY --chown=node:node . ./
-
 
 ########################
 # FOR PRODUCTION STAGE
@@ -40,6 +37,8 @@ COPY --chown=node:node . ./
 FROM base AS production
 
 ENV NODE_ENV=production
+
+RUN pnpm install --frozen-lockfile --prod
 
 COPY --chown=node --from=build /home/node/app/dist/ ./dist
 
