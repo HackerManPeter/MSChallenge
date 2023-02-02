@@ -3,4 +3,4 @@ docker-compose.yml
 .gitignore
 .env
 .dockerignore
-# node_modules
+node_modules
