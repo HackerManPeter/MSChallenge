@@ -42,4 +42,4 @@ RUN pnpm install --frozen-lockfile --prod
 
 COPY --chown=node --from=build /home/node/app/dist/ ./dist
 
-CMD ["node", "main.js"]
+CMD ["node", "dist/main.js"]
