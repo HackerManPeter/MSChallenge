@@ -18,7 +18,7 @@ import { Member } from './members/entities/member.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: [Staff, Member],
-      // synchronize: true,
+      synchronize: true,
       autoLoadEntities: true,
     }),
     BooksModule,
