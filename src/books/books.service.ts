@@ -65,7 +65,6 @@ export class BooksService {
 
       return this.bookRepository.findOneBy({ book_ID: id });
     } catch (error) {
-      console.log('err');
       return error;
     }
   }
