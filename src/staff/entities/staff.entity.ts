@@ -3,26 +3,26 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Staff {
   @PrimaryGeneratedColumn()
-  id: number;
+  staff_id: number;
 
   @Column()
-  firstname: string;
+  staff_firstname: string;
 
   @Column()
-  lastname: string;
+  staff_lastname: string;
 
   @Column()
-  mobilenumber: string;
+  staff_mobilenumber: string;
 
   @Column()
-  email: string;
+  staff_email: string;
 
   @Column()
-  password: string;
+  staff_password: string;
 
   @Column()
-  authsalt: string;
+  staff_authsalt: string;
 
   @Column()
-  category: string;
+  staff_category: string;
 }

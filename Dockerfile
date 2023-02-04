@@ -22,6 +22,17 @@ COPY --chown=node:node package*.json pnpm-lock.yaml ./
 # FOR BUILD STAGE
 ###################
 
+FROM base as development
+
+RUN pnpm install
+
+COPY --chown=node:node . .
+
+
+###################
+# FOR BUILD STAGE
+###################
+
 FROM base as build
 
 RUN pnpm install --frozen-lockfile

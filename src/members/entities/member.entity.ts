@@ -13,7 +13,7 @@ export class Member {
   member_lastname: string;
 
   @Column()
-  dateofBirth: Date;
+  member_dateofBirth: string;
 
   @Column({
     type: 'enum',
