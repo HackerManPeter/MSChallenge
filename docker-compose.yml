@@ -1,15 +1,22 @@
 version: '3.8'
 services:
   api:
-    build: .
+    container_name: library-api
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/home/node/app
+    command: pnpm start:dev
     ports:
-      - '3000:3000'
-    .env_file:
+      - '$SERVER_PORT:$SERVER_PORT'
+    env_file:
       - .env
     depends_on:
       - mysql
 
   mysql:
+    container_name: library-db
     image: mysql
     volumes:
       - ./data:/docker-entrypoint-initdb.d
